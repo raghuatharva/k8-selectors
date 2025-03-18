@@ -1,5 +1,6 @@
 #CHECK COMMENTS FOR UNDERSTANDING
-# if its tainted, toleration is compulsary
+# if its tainted, toleration is compulsary no matter what the affinity is.
+# if its not tainted, toleration is optional.
 
 apiVersion: v1
 kind: Pod
