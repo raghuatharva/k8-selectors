@@ -1,0 +1,49 @@
+#CHECK COMMENTS FOR UNDERSTANDING
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: expense
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: 
+        nodeSelectorTerms:
+        - matchExpressions: 
+          - key: node
+            operator: In 
+            values:
+            - firstnode
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100 # whatever the weight you put , if there is no such label on the node, it will not schedule on that node.
+        preference:
+          matchExpressions:
+          - key: another-node-label-key
+            operator: In         
+            values:
+            - another-node-label-value
+  containers:
+  - name: frontend
+    image: nginx     # docker run -d --name frontend nginx
+    resources:
+          requests:
+            memory: "64Mi"  #soft limit 64 megabytes
+            cpu: "250m"
+          limits:
+            memory: "128Mi" #hard limit 128 megabytes max.
+            cpu: "500m"
+
+
+# requiredDuringSchedulingIgnoredDuringExecution: #required means node must have this label , ignored means If the node label changes after the pod is running, the pod stays.
+
+# - matchExpressions: #node label ; key: node, values: firstnode 
+#           - key: node
+#             operator: In #in means the node should have the label value mentioned in values. if we give notin, then it will   not schedule on the nodes with the label value mentioned in values.
+#             values:
+#             - firstnode
+
+
+#prefferedDuringSchedulingIgnoredDuringExecution: 
+
+#in the above example if 2 nodes has node=firstnode as label , out of 2 , one node has another-node-label-key=another-node-label-value as label, then the pod will be scheduled on the node which has another-node-label-key=another-node-label-value as label. 

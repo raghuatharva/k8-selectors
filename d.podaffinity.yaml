@@ -1,0 +1,75 @@
+# This will create a pod at a random node
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  labels:
+    purpose: affinity
+spec:
+  containers:
+  # docker run -d --name nginx nginx
+  - name: nginx
+    image: nginx:stable-perl
+    resources:
+      requests:
+        memory: "64Mi"  #soft limit 64 megabytes
+        cpu: "250m"
+      limits:
+        memory: "128Mi" #hard limit 128 megabytes max.
+        cpu: "500m"
+---
+
+# To create a pod where pod1 is present , this is the pod affinity file
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-2
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: purpose
+            operator: In
+            values:
+            - affinity
+        topologyKey: kubernetes.io/hostname
+  containers:
+  - name: nginx
+    image: nginx:stable-perl
+    resources:
+      requests:
+        memory: "64Mi"  
+        cpu: "250m"
+      limits:
+        memory: "128Mi" 
+        cpu: "500m"
+---
+# To create a pod where pod1 is not present , this is the pod anti-affinity file
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-3
+spec:
+  affinity:
+    podAntiAffinity: #this is the only change which reverse affinity to anti-affinity
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: purpose
+            operator: In  # here if you give NotIn , then also it will not schedule on the node where pod1 is present
+            values:
+            - affinity
+        topologyKey: kubernetes.io/hostname
+  containers:
+  - name: nginx
+    image: nginx:stable-perl
+    resources:
+      requests:
+        memory: "64Mi"  
+        cpu: "250m"
+      limits:
+        memory: "128Mi" 
+        cpu: "500m"
