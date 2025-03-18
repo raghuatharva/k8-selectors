@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: store
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -29,13 +29,13 @@ spec:
       containers:
       - name: redis-server
         image: redis:3.2-alpine
-        resources:
-          requests:
-            memory: "100Mi"
-            cpu: "100m"
-          limits:
-            memory: "200Mi"
-            cpu: "200m"
+        # resources:
+        #   requests:
+        #     memory: "100Mi"
+        #     cpu: "100m"
+        #   limits:
+        #     memory: "200Mi"
+        #     cpu: "200m"
       tolerations:
         - key: "node"
           operator: "Equal"
@@ -53,7 +53,7 @@ spec:
   selector:
     matchLabels:
       app: web-store
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -81,13 +81,13 @@ spec:
       containers:
       - name: web-app
         image: nginx:1.16-alpine
-        resources:
-          requests:
-            memory: "100Mi"
-            cpu: "100m"
-          limits:
-            memory: "200Mi"
-            cpu: "200m"
+        # resources:
+        #   requests:
+        #     memory: "100Mi"
+        #     cpu: "100m"
+        #   limits:
+        #     memory: "200Mi"
+        #     cpu: "200m"
       tolerations:
         - key: "node"
           operator: "Equal"
