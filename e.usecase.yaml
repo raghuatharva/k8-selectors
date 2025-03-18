@@ -29,13 +29,13 @@ spec:
       containers:
       - name: redis-server
         image: redis:3.2-alpine
-        resources:
-          requests:
-            memory: "100Mi"
-            cpu: "100m"
-          limits:
-            memory: "200Mi"
-            cpu: "200m"
+#         resources:
+#           requests:
+#             memory: "100Mi"
+#             cpu: "100m"
+#           limits:
+#             memory: "200Mi"
+#             cpu: "200m"
 ---
 # This is a deployment file which will create 3 replicas of frontend server 
 # here the rule every frontend server should be attached to a cache server is implemented using podAffinity and also frontend server should not be created on the same node is implemented using podAntiAffinity
@@ -76,10 +76,10 @@ spec:
       containers:
       - name: web-app
         image: nginx:1.16-alpine
-        resources:
-          requests:
-            memory: "100Mi"
-            cpu: "100m"
-          limits:
-            memory: "200Mi"
-            cpu: "200m"
+        # resources:
+        #   requests:
+        #     memory: "100Mi"
+        #     cpu: "100m"
+        #   limits:
+        #     memory: "200Mi"
+        #     cpu: "200m"

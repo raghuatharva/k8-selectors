@@ -11,13 +11,13 @@ spec:
   # docker run -d --name nginx nginx
   - name: nginx
     image: nginx:stable-perl
-    resources:
-      requests:
-        memory: "64Mi"  #soft limit 64 megabytes
-        cpu: "250m"
-      limits:
-        memory: "128Mi" #hard limit 128 megabytes max.
-        cpu: "500m"
+    # resources:
+    #   requests:
+    #     memory: "64Mi"  #soft limit 64 megabytes
+    #     cpu: "250m"
+    #   limits:
+    #     memory: "128Mi" #hard limit 128 megabytes max.
+    #     cpu: "500m"
 ---
 
 # To create a pod where pod1 is present , this is the pod affinity file

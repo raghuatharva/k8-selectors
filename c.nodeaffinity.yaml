@@ -26,13 +26,13 @@ spec:
   containers:
   - name: frontend
     image: nginx     # docker run -d --name frontend nginx
-    resources:
-          requests:
-            memory: "64Mi"  #soft limit 64 megabytes
-            cpu: "250m"
-          limits:
-            memory: "128Mi" #hard limit 128 megabytes max.
-            cpu: "500m"
+    # resources:
+    #       requests:
+    #         memory: "64Mi"  #soft limit 64 megabytes
+    #         cpu: "250m"
+    #       limits:
+    #         memory: "128Mi" #hard limit 128 megabytes max.
+    #         cpu: "500m"
 
 
 # requiredDuringSchedulingIgnoredDuringExecution: #required means node must have this label , ignored means If the node label changes after the pod is running, the pod stays.

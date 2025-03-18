@@ -26,13 +26,13 @@ spec:
         image: rohanraghu/frontend:v1
         ports: 
         - containerPort: 80
-        resources:
-          requests:
-            memory: "64Mi"  #soft limit 64 megabytes
-            cpu: "250m"
-          limits:
-            memory: "128Mi" #hard limit 128 megabytes max.
-            cpu: "500m"
+        # resources:
+        #   requests:
+        #     memory: "64Mi"  #soft limit 64 megabytes
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "128Mi" #hard limit 128 megabytes max.
+        #     cpu: "500m"
       tolerations:    #label of node should be node: firstnode
       - key: "node"
         operator: "Equal"
