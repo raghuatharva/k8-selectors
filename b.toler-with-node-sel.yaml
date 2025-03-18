@@ -13,7 +13,7 @@ spec:
     matchLabels:         # This should be the label of the pod to which this replicaset will manage          
       app: nginx             
       tier: frontend
-      project: expense
+      project: expense   
   template:
     metadata:
       labels:             # (This is the label of the pod) this label should be same as matchLabels of selector  
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: rohanraghu/frontend:v1
+        image: nginx
         ports: 
         - containerPort: 80
         # resources:
