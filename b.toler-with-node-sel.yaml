@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: frontend1
   namespace: expense
   labels:                # This is the label of the replicaset. This is used to identify the replicaset only.
     app: nginx             
