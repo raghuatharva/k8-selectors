@@ -1,4 +1,5 @@
 #CHECK COMMENTS FOR UNDERSTANDING
+# if its tainted, toleration is compulsary
 
 apiVersion: v1
 kind: Pod
@@ -33,6 +34,11 @@ spec:
     #       limits:
     #         memory: "128Mi" #hard limit 128 megabytes max.
     #         cpu: "500m"
+  tolerations:    
+  - key: "node"
+    operator: "Equal"
+    value: "firstnode"
+    effect: "NoSchedule"
 
 
 # requiredDuringSchedulingIgnoredDuringExecution: #required means node must have this label , ignored means If the node label changes after the pod is running, the pod stays.

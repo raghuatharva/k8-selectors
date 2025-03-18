@@ -36,6 +36,11 @@ spec:
 #           limits:
 #             memory: "200Mi"
 #             cpu: "200m"
+      tolerations:
+        - key: "node"
+          operator: "Equal"
+          value: "firstnode"
+          effect: "NoSchedule"
 ---
 # This is a deployment file which will create 3 replicas of frontend server 
 # here the rule every frontend server should be attached to a cache server is implemented using podAffinity and also frontend server should not be created on the same node is implemented using podAntiAffinity

@@ -73,3 +73,8 @@ spec:
       limits:
         memory: "128Mi" 
         cpu: "500m"
+    tolerations:    
+    - key: "node"
+      operator: "Equal"
+      value: "firstnode"
+      effect: "NoSchedule"
