@@ -54,3 +54,7 @@ spec:
 #prefferedDuringSchedulingIgnoredDuringExecution: 
 
 #in the above example if 2 nodes has node=firstnode as label , out of 2 , one node has another-node-label-key=another-node-label-value as label, then the pod will be scheduled on the node which has another-node-label-key=another-node-label-value as label. 
+
+#basically nodes will have multiple label; if 3 nodes have same label and 3rd nodes has one extra label . if that extra label matches with preffered scheduling then that node will have more weightage to get this pod into node
+
+

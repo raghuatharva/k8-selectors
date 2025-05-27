@@ -1,3 +1,6 @@
+# giveing tolerations doesnt guarantee you that pod will go to that node. toleration with node selector also doent guarantee
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,11 +36,11 @@ spec:
           limits:
             memory: "128Mi" #hard limit 128 megabytes max.
             cpu: "500m"
-      tolerations:    #label of node should be node: firstnode
+      tolerations:    #Details of the node-- label of node -  node: firstnode ; effect: noschedule(we tainted this already ) 
       - key: "node"
         operator: "Equal"
         value: "firstnode"
-        effect: "NoSchedule"
+        effect: "NoSchedule" 
 ---
 
 # This is the service which will route the traffic to the pods
